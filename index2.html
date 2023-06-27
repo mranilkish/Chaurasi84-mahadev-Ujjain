@@ -1,0 +1,108 @@
+
+<!-- saved from url=(0049)file:///C:/Users/Lincon/Downloads/NumbSelect.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <style>
+            input[type=textbox]{
+                font-size: 20pt;
+                width: 600px;
+            }
+            textarea{
+                font-size: 20pt;
+                
+            }
+        </style>
+
+    </head>
+    <body>
+        
+        <textarea id="di" cols="28" rows="12" onblur="f()"></textarea>
+        <textarea id="do" cols="28" rows="12"></textarea>
+
+        <br><p id="zy"></p>
+        
+        <script>
+
+var n = document.getElementById("di");
+    /* save */
+    var s = function(){localStorage.setItem("notepad", n.value);}
+    /* retrieve (only on page load) */
+    if(window.localStorage){ n.value = localStorage.getItem("notepad");}
+    /* autosave onchange and every 500ms and when you close the window */
+    n.onchange = s();
+    setInterval( s, 5000);
+    window.onunload = s();
+
+       
+             function fff() {
+                ii1=document.getElementById("zy")       
+        text=ii1.innerHTML;
+        
+               // alert("copied   "+text)
+    var input = document.createElement('input');
+    input.setAttribute('value', text);
+    document.body.appendChild(input);
+    input.select();
+    var result = document.execCommand('copy');
+    document.body.removeChild(input);
+    return result;
+             
+ }
+            function f(){
+            
+                di=document.getElementById("di");
+                ele2=document.getElementById("zy")
+ 
+        aa1=di.value.replaceAll( /\n/g, " " )
+        aa1=aa1.replaceAll( ",", " " )
+       
+        aa1=aa1.split(" ")
+       
+       
+       // alert(aa1.length)
+        bb1=[]
+        for( i=0;i<aa1.length;i++)
+        {
+        
+         //   alert(aa1[i])
+            bb1[i]=parseInt(aa1[i])
+           
+        }
+
+        
+        cc1=bb1.sort(function(a, b){return a - b})
+        ddd1=[]
+        
+        for(ddd1[0]=cc1[0], i=1,j=0;i<cc1.length;i++)
+        {
+        
+         //   alert(aa1[i])
+            if(cc1[i]==cc1[i-1])
+            continue;
+            else
+            ddd1[++j]=cc1[i];
+
+           
+        }
+        di.value=ele2.innerHTML=aa1.join(",")
+        dd1=""
+        for(i=1,j=0;i<=84;i++)
+        {
+
+            if((i==ddd1[j]))
+            {
+                j++;
+                continue;
+            }
+            dd1+=i+" ,"
+        }
+        doo=document.getElementById("do");
+        doo.value=dd1;
+      
+             }
+             f();
+
+            
+         </script>
+    
+
+</body></html>
